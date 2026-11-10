@@ -1,40 +1,39 @@
 function WeeklyWeather({ weatherData }) {
-  if (!weatherData) {
+  if (!weatherData || !weatherData.time) {
     return (
       <div className="weekly-weather-container">
-        <div className="weekly-cards-wrapper">
-          <div className="weekly-card">
-            <span className="day-name">Loading...</span>
-          </div>
+        <div className="weather-card">
+          <span className="day-name">Loading...</span>
         </div>
       </div>
     );
   }
 
-  const daysOfWeek = ["Today", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
-  const forecastData = weatherData.time.slice(0, 7).map((date, index) => {
+  const forecastData = weatherData.time.slice(0, 7).map((dateStr, index) => {
     const maxTemp = Math.round(weatherData.temperature_2m_max[index]);
     const minTemp = Math.round(weatherData.temperature_2m_min[index]);
-    
+
+    const dateObj = new Date(dateStr);
+    const dayName =
+      index === 0
+        ? "Today"
+        : dateObj.toLocaleDateString("en-US", { weekday: "long" });
+
     return {
-      day: daysOfWeek[index] || "Day",
+      day: dayName,
       temp: `${maxTemp}° / ${minTemp}°`,
-      condition: "Sunny"
+      condition: "Sunny",
     };
   });
 
   return (
     <div className="weekly-weather-container">
-      <div className="weekly-cards-wrapper">
-        {forecastData.map((item, index) => (
-          <div key={index} className="weekly-card">
-            <span className="day-name">{item.day}</span>
-            <span className="weather-status">{item.condition}</span>
-            <span className="day-temp">{item.temp}</span>
-          </div>
-        ))}
-      </div>
+      {forecastData.map((item, index) => (
+        <div className="weather-card" key={index}>
+          <span className="day-name">{item.day}</span>
+          <span className="temp">{item.temp}</span>
+        </div>
+      ))}
     </div>
   );
 }
