@@ -2,7 +2,10 @@ body {
   margin: 0;
   padding: 0;
   background-color: #ffffff;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 .weather-app-container {
@@ -152,10 +155,11 @@ body {
 }
 .weekly-weather-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 10px;
-  box-sizing: border-box;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .weekly-cards-wrapper {
@@ -178,7 +182,9 @@ body {
   padding: 16px 24px;
   color: #ffffff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .weekly-card:hover {
@@ -230,7 +236,10 @@ body {
   color: #ffffff;
   box-sizing: border-box;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .weather-card:hover {
